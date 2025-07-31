@@ -1,0 +1,17 @@
+{
+  "name": "salon-survey",
+  "version": "1.0.0",
+  "description": "ヘアサロン向けWEBアンケートシステム",
+  "main": "index.html",
+  "scripts": {
+    "dev": "http-server -p 3000",
+    "build": "echo 'Static site - no build required'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["salon", "survey", "web", "form"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

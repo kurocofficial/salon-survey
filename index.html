@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ヘアサロン運営データアンケート</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ヘアサロン運営データアンケート</h1>
+            <div class="company-info">
+                <div class="company-row">
+                    <div class="input-group">
+                        <label>会社名</label>
+                        <input type="text" id="company-name" name="companyName" placeholder="会社名を入力してください">
+                    </div>
+                    <div class="input-group">
+                        <label>店舗名</label>
+                        <input type="text" id="store-name" name="storeName" placeholder="店舗名を入力してください">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('store')">店舗</button>
+            <button class="tab-button" onclick="switchTab('stylist')">スタイリスト</button>
+        </div>
+
+        <form id="salonForm">
+            <!-- 店舗タブ -->
+            <div id="store-tab" class="tab-content active">
+                <h2>店舗データ</h2>
+                
+
+                <div class="form-section">
+                    <h3>年別データ</h3>
+                    <div class="year-data">
+                        <div class="year-column">
+                            <h4>2023年</h4>
+                            <div class="input-group">
+                                <label>売上 (万円)</label>
+                                <input type="number" name="store2023Sales" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>客数 (人)</label>
+                                <input type="number" name="store2023Customers" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>指名率 (%)</label>
+                                <input type="number" name="store2023Nomination" placeholder="0" min="0" max="100">
+                            </div>
+                        </div>
+
+                        <div class="year-column">
+                            <h4>2024年</h4>
+                            <div class="input-group">
+                                <label>売上 (万円)</label>
+                                <input type="number" name="store2024Sales" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>客数 (人)</label>
+                                <input type="number" name="store2024Customers" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>指名率 (%)</label>
+                                <input type="number" name="store2024Nomination" placeholder="0" min="0" max="100">
+                            </div>
+                        </div>
+
+                        <div class="year-column">
+                            <h4>2025年</h4>
+                            <div class="input-group">
+                                <label>売上 (万円)</label>
+                                <input type="number" name="store2025Sales" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>客数 (人)</label>
+                                <input type="number" name="store2025Customers" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>指名率 (%)</label>
+                                <input type="number" name="store2025Nomination" placeholder="0" min="0" max="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- スタイリストタブ -->
+            <div id="stylist-tab" class="tab-content">
+                <h2>スタイリストデータ</h2>
+                
+                <div id="stylists-container">
+                    <!-- デフォルト5名分 -->
+                    <div class="stylist-section" data-stylist="1">
+                        <h3>スタイリスト 1</h3>
+                        <div class="stylist-name">
+                            <label>名前</label>
+                            <input type="text" name="stylist1Name" placeholder="スタイリスト名">
+                        </div>
+                        <div class="year-data">
+                            <div class="year-column">
+                                <h4>2023年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist1_2023Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2024年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist1_2024Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2025年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist1_2025Sales" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stylist-section" data-stylist="2">
+                        <h3>スタイリスト 2</h3>
+                        <div class="stylist-name">
+                            <label>名前</label>
+                            <input type="text" name="stylist2Name" placeholder="スタイリスト名">
+                        </div>
+                        <div class="year-data">
+                            <div class="year-column">
+                                <h4>2023年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist2_2023Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2024年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist2_2024Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2025年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist2_2025Sales" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stylist-section" data-stylist="3">
+                        <h3>スタイリスト 3</h3>
+                        <div class="stylist-name">
+                            <label>名前</label>
+                            <input type="text" name="stylist3Name" placeholder="スタイリスト名">
+                        </div>
+                        <div class="year-data">
+                            <div class="year-column">
+                                <h4>2023年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist3_2023Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2024年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist3_2024Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2025年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist3_2025Sales" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stylist-section" data-stylist="4">
+                        <h3>スタイリスト 4</h3>
+                        <div class="stylist-name">
+                            <label>名前</label>
+                            <input type="text" name="stylist4Name" placeholder="スタイリスト名">
+                        </div>
+                        <div class="year-data">
+                            <div class="year-column">
+                                <h4>2023年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist4_2023Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2024年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist4_2024Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2025年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist4_2025Sales" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stylist-section" data-stylist="5">
+                        <h3>スタイリスト 5</h3>
+                        <div class="stylist-name">
+                            <label>名前</label>
+                            <input type="text" name="stylist5Name" placeholder="スタイリスト名">
+                        </div>
+                        <div class="year-data">
+                            <div class="year-column">
+                                <h4>2023年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist5_2023Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2024年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist5_2024Sales" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="year-column">
+                                <h4>2025年</h4>
+                                <div class="input-group">
+                                    <label>売上 (万円)</label>
+                                    <input type="number" name="stylist5_2025Sales" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="add-stylist" class="add-button">+ スタイリストを追加</button>
+            </div>
+
+            <div class="form-section">
+                <h3>Hotpepper Beauty ページURL</h3>
+                <input type="url" id="hotpepper-url" name="hotpepperUrl" placeholder="https://beauty.hotpepper.jp/..." class="full-width">
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" id="submit-btn" class="submit-button">送信</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
