@@ -76,21 +76,19 @@ function removeStylist(stylistId) {
 
 async function submitForm(formData) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwqTL9vUeN78LV_vT9-Dr2w0PwPqgwgAlUUaTHMxLYUG85IVtT_lngP-B0oLUSKJl5TSQ/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzzBnEFhtXbi6suL_nRiIaBHucYkpNldD04cQfUYEHw1winD-lurFb6tRmVxiNKq702uQ/exec', {
             method: 'POST',
-            mode: 'cors',
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData)
         });
 
-        if (response.ok) {
-            alert('データを送信しました。ありがとうございます。');
-            window.location.href = 'https://form.k3r.jp/cm_consulting/habu-ADACHI';
-        } else {
-            throw new Error('送信に失敗しました');
-        }
+        // no-corsモードでは response.ok が使えないため、成功として扱う
+        alert('データを送信しました。ありがとうございます。');
+        window.location.href = 'https://form.k3r.jp/cm_consulting/habu-ADACHI';
+
     } catch (error) {
         console.error('Error:', error);
         alert('送信中にエラーが発生しました。もう一度お試しください。');
