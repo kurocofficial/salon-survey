@@ -4,20 +4,20 @@ const maxStylists = 10;
 function switchTab(tabName) {
     const tabs = document.querySelectorAll('.tab-content');
     const buttons = document.querySelectorAll('.tab-button');
-    
+
     tabs.forEach(tab => tab.classList.remove('active'));
     buttons.forEach(button => button.classList.remove('active'));
-    
+
     document.getElementById(tabName + '-tab').classList.add('active');
     document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
 }
 
 function addStylist() {
     if (stylistCount >= maxStylists) return;
-    
+
     stylistCount++;
     const container = document.getElementById('stylists-container');
-    
+
     const stylistHTML = `
         <div class="stylist-section" data-stylist="${stylistCount}">
             <button type="button" class="remove-stylist" onclick="removeStylist(${stylistCount})">×</button>
@@ -51,9 +51,9 @@ function addStylist() {
             </div>
         </div>
     `;
-    
+
     container.insertAdjacentHTML('beforeend', stylistHTML);
-    
+
     if (stylistCount >= maxStylists) {
         document.getElementById('add-stylist').disabled = true;
         document.getElementById('add-stylist').textContent = '最大10名まで';
@@ -62,12 +62,12 @@ function addStylist() {
 
 function removeStylist(stylistId) {
     if (stylistId <= 5) return;
-    
+
     const stylistElement = document.querySelector(`[data-stylist="${stylistId}"]`);
     if (stylistElement) {
         stylistElement.remove();
         stylistCount--;
-        
+
         const addButton = document.getElementById('add-stylist');
         addButton.disabled = false;
         addButton.textContent = '+ スタイリストを追加';
@@ -76,7 +76,7 @@ function removeStylist(stylistId) {
 
 async function submitForm(formData) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbycSyLF3T9uzk1H6nLNuP4RBC6eS2l3tI8uSHf470cBlsr7kOnic90vDlto7UIg8f4lAA/exec', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -84,7 +84,7 @@ async function submitForm(formData) {
             },
             body: JSON.stringify(formData)
         });
-        
+
         if (response.ok) {
             alert('データを送信しました。ありがとうございます。');
             window.location.href = 'https://form.k3r.jp/cm_consulting/habu-ADACHI';
@@ -103,7 +103,7 @@ function collectFormData() {
         companyName: document.getElementById('company-name').value,
         storeName: document.getElementById('store-name').value,
         store: {
-            hotpepperUrl: document.getElementById('hotpepper-url').value,
+            hotpepperUrl: '',
             data2023: {
                 sales: document.querySelector('[name="store2023Sales"]').value,
                 customers: document.querySelector('[name="store2023Customers"]').value,
@@ -122,12 +122,12 @@ function collectFormData() {
         },
         stylists: []
     };
-    
+
     const stylistSections = document.querySelectorAll('.stylist-section');
     stylistSections.forEach(section => {
         const stylistId = section.dataset.stylist;
         const name = document.querySelector(`[name="stylist${stylistId}Name"]`).value;
-        
+
         if (name.trim()) {
             formData.stylists.push({
                 id: stylistId,
@@ -144,23 +144,23 @@ function collectFormData() {
             });
         }
     });
-    
+
     return formData;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-stylist').addEventListener('click', addStylist);
-    
+
     document.getElementById('salonForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         const formData = collectFormData();
-        
+
         if (!formData.companyName || !formData.storeName) {
             alert('会社名と店舗名を入力してください。');
             return;
         }
-        
+
         submitForm(formData);
     });
 });
