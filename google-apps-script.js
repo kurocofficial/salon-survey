@@ -4,21 +4,21 @@
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
-    
+
     // スプレッドシートのIDを設定（実際のIDに置き換えてください）
-    const spreadsheetId = 'YOUR_SPREADSHEET_ID';
+    const spreadsheetId = '1vX0FBwiz5THuo1fL5eboYmVDe9Us38Xuxv-7ugmiUAA';
     const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
-    
+
     // 店舗データシートに書き込み
     writeStoreData(spreadsheet, data);
-    
+
     // スタイリストデータシートに書き込み
     writeStylistData(spreadsheet, data);
-    
+
     return ContentService
       .createTextOutput(JSON.stringify({result: 'success'}))
       .setMimeType(ContentService.MimeType.JSON);
-      
+
   } catch (error) {
     console.error('Error:', error);
     return ContentService
@@ -29,11 +29,11 @@ function doPost(e) {
 
 function writeStoreData(spreadsheet, data) {
   let storeSheet = spreadsheet.getSheetByName('店舗データ');
-  
+
   // シートが存在しない場合は作成
   if (!storeSheet) {
     storeSheet = spreadsheet.insertSheet('店舗データ');
-    
+
     // ヘッダー行を設定
     const headers = [
       '送信日時',
@@ -51,14 +51,14 @@ function writeStoreData(spreadsheet, data) {
       '2025年指名率'
     ];
     storeSheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-    
+
     // ヘッダー行をフォーマット
     storeSheet.getRange(1, 1, 1, headers.length)
       .setBackground('#0C5A4B')
       .setFontColor('white')
       .setFontWeight('bold');
   }
-  
+
   // データ行を追加
   const storeData = [
     data.timestamp,
@@ -75,18 +75,18 @@ function writeStoreData(spreadsheet, data) {
     data.store.data2025.customers || '',
     data.store.data2025.nomination || ''
   ];
-  
+
   const lastRow = storeSheet.getLastRow();
   storeSheet.getRange(lastRow + 1, 1, 1, storeData.length).setValues([storeData]);
 }
 
 function writeStylistData(spreadsheet, data) {
   let stylistSheet = spreadsheet.getSheetByName('スタイリストデータ');
-  
+
   // シートが存在しない場合は作成
   if (!stylistSheet) {
     stylistSheet = spreadsheet.insertSheet('スタイリストデータ');
-    
+
     // ヘッダー行を設定
     const headers = [
       '送信日時',
@@ -99,14 +99,14 @@ function writeStylistData(spreadsheet, data) {
       '2025年売上'
     ];
     stylistSheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-    
+
     // ヘッダー行をフォーマット
     stylistSheet.getRange(1, 1, 1, headers.length)
       .setBackground('#0C5A4B')
       .setFontColor('white')
       .setFontWeight('bold');
   }
-  
+
   // 各スタイリストのデータを追加
   data.stylists.forEach(stylist => {
     const stylistData = [
@@ -119,7 +119,7 @@ function writeStylistData(spreadsheet, data) {
       stylist.data2024.sales || '',
       stylist.data2025.sales || ''
     ];
-    
+
     const lastRow = stylistSheet.getLastRow();
     stylistSheet.getRange(lastRow + 1, 1, 1, stylistData.length).setValues([stylistData]);
   });
