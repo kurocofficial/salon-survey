@@ -76,7 +76,7 @@ function removeStylist(stylistId) {
 
 async function submitForm(formData) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxQs1ha4XexX3p4BSCpmjAHu5BU_qp28yGgwCgH-kYse-MLtrPRJNaR11Pm1o4yyJXZlQ/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwZkFpebP8nFoEfgsFtMd3gfi22Q24ZFGz6C_9wamO3p6ZMQVAtGyKC0fKDItgyd9KYEg/exec', {
             method: 'POST',
             mode: 'cors',
             headers: {
