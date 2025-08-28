@@ -134,17 +134,26 @@ function collectFormData() {
             data2023: {
                 sales: document.querySelector('[name="store2023Sales"]').value,
                 customers: document.querySelector('[name="store2023Customers"]').value,
-                nomination: document.querySelector('[name="store2023Nomination"]').value
+                cardCustomers: document.querySelector('[name="store2023CardCustomers"]').value,
+                nomination: document.querySelector('[name="store2023Nomination"]').value,
+                revisit: document.querySelector('[name="store2023Revisit"]').value,
+                retail: document.querySelector('[name="store2023Retail"]').value
             },
             data2024: {
                 sales: document.querySelector('[name="store2024Sales"]').value,
                 customers: document.querySelector('[name="store2024Customers"]').value,
-                nomination: document.querySelector('[name="store2024Nomination"]').value
+                cardCustomers: document.querySelector('[name="store2024CardCustomers"]').value,
+                nomination: document.querySelector('[name="store2024Nomination"]').value,
+                revisit: document.querySelector('[name="store2024Revisit"]').value,
+                retail: document.querySelector('[name="store2024Retail"]').value
             },
             data2025: {
                 sales: document.querySelector('[name="store2025Sales"]').value,
                 customers: document.querySelector('[name="store2025Customers"]').value,
-                nomination: document.querySelector('[name="store2025Nomination"]').value
+                cardCustomers: document.querySelector('[name="store2025CardCustomers"]').value,
+                nomination: document.querySelector('[name="store2025Nomination"]').value,
+                revisit: document.querySelector('[name="store2025Revisit"]').value,
+                retail: document.querySelector('[name="store2025Retail"]').value
             }
         },
         stylists: []
