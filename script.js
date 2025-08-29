@@ -116,7 +116,7 @@ function collectFormData() {
         companyName: document.getElementById('company-name').value,
         storeName: document.getElementById('store-name').value,
         store: {
-            hotpepperUrl: '',
+            hotpepperUrl: document.querySelector('[name="hotpepperUrl"]').value,
             data2023: {
                 sales: document.querySelector('[name="store2023Sales"]').value,
                 customers: document.querySelector('[name="store2023Customers"]').value,
