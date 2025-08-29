@@ -63,12 +63,12 @@ function updateRemoveButtons() {
 async function submitForm(formData) {
     const submitButton = document.getElementById('submit-btn');
     const originalText = submitButton.textContent;
-    
+
     try {
         // ローディング状態を開始
         setLoadingState(submitButton, true);
-        
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwUlce1g8i7SpW4q4G8qMamB7jrikZ7riLB21Tz5wQlCrYvOs_G3IGupjD_M5FUksFHBw/exec', {
+
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyTWp7a-xs7r81jstzBf72DeVHHzMzSLDIfS74eTvHQSZuVNY06W5BuUESktTs09urvfQ/exec', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
@@ -79,20 +79,20 @@ async function submitForm(formData) {
 
         // 少し待機してからローディング状態を終了（UX向上）
         await new Promise(resolve => setTimeout(resolve, 500));
-        
+
         // ローディング状態を終了
         setLoadingState(submitButton, false);
-        
+
         // no-corsモードでは response.ok が使えないため、成功として扱う
         alert('データを送信しました。ありがとうございます。');
         window.location.href = 'https://form.k3r.jp/cm_consulting/habu-ADACHI';
 
     } catch (error) {
         console.error('Error:', error);
-        
+
         // ローディング状態を終了
         setLoadingState(submitButton, false);
-        
+
         alert('送信中にエラーが発生しました。もう一度お試しください。');
     }
 }
