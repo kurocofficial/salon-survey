@@ -16,43 +16,20 @@ function addStylist() {
     if (stylistCount >= maxStylists) return;
 
     stylistCount++;
-    const container = document.getElementById('stylists-container');
+    const tbody = document.getElementById('stylist-tbody');
 
-    const stylistHTML = `
-        <div class="stylist-section" data-stylist="${stylistCount}">
-            <button type="button" class="remove-stylist" onclick="removeStylist(${stylistCount})">×</button>
-            <h3>スタイリスト ${stylistCount}</h3>
-            <div class="stylist-name">
-                <label>名前</label>
-                <input type="text" name="stylist${stylistCount}Name" placeholder="スタイリスト名">
-            </div>
-            <div class="year-data">
-                <div class="year-column">
-                    <h4>2023年</h4>
-                    <div class="input-group">
-                        <label>売上 (万円)</label>
-                        <input type="number" name="stylist${stylistCount}_2023Sales" placeholder="0">
-                    </div>
-                </div>
-                <div class="year-column">
-                    <h4>2024年</h4>
-                    <div class="input-group">
-                        <label>売上 (万円)</label>
-                        <input type="number" name="stylist${stylistCount}_2024Sales" placeholder="0">
-                    </div>
-                </div>
-                <div class="year-column">
-                    <h4>2025年</h4>
-                    <div class="input-group">
-                        <label>売上 (万円)</label>
-                        <input type="number" name="stylist${stylistCount}_2025Sales" placeholder="0">
-                    </div>
-                </div>
-            </div>
-        </div>
+    const rowHTML = `
+        <tr data-stylist="${stylistCount}">
+            <td><input type="text" name="stylist${stylistCount}Name" placeholder="スタイリスト名" class="name-input"></td>
+            <td><input type="number" name="stylist${stylistCount}_2023Sales" placeholder="0" class="sales-input"></td>
+            <td><input type="number" name="stylist${stylistCount}_2024Sales" placeholder="0" class="sales-input"></td>
+            <td><input type="number" name="stylist${stylistCount}_2025Sales" placeholder="0" class="sales-input"></td>
+            <td><button type="button" class="remove-row" onclick="removeRow(${stylistCount})">削除</button></td>
+        </tr>
     `;
 
-    container.insertAdjacentHTML('beforeend', stylistHTML);
+    tbody.insertAdjacentHTML('beforeend', rowHTML);
+    updateRemoveButtons();
 
     if (stylistCount >= maxStylists) {
         document.getElementById('add-stylist').disabled = true;
@@ -60,18 +37,27 @@ function addStylist() {
     }
 }
 
-function removeStylist(stylistId) {
-    if (stylistId <= 5) return;
-
-    const stylistElement = document.querySelector(`[data-stylist="${stylistId}"]`);
-    if (stylistElement) {
-        stylistElement.remove();
+function removeRow(stylistId) {
+    const row = document.querySelector(`[data-stylist="${stylistId}"]`);
+    if (row) {
+        row.remove();
         stylistCount--;
+        updateRemoveButtons();
 
         const addButton = document.getElementById('add-stylist');
         addButton.disabled = false;
         addButton.textContent = '+ スタイリストを追加';
     }
+}
+
+function updateRemoveButtons() {
+    const rows = document.querySelectorAll('#stylist-tbody tr');
+    rows.forEach((row, index) => {
+        const removeButton = row.querySelector('.remove-row');
+        if (removeButton) {
+            removeButton.disabled = rows.length <= 1;
+        }
+    });
 }
 
 async function submitForm(formData) {
@@ -159,9 +145,9 @@ function collectFormData() {
         stylists: []
     };
 
-    const stylistSections = document.querySelectorAll('.stylist-section');
-    stylistSections.forEach(section => {
-        const stylistId = section.dataset.stylist;
+    const stylistRows = document.querySelectorAll('#stylist-tbody tr[data-stylist]');
+    stylistRows.forEach(row => {
+        const stylistId = row.dataset.stylist;
         const name = document.querySelector(`[name="stylist${stylistId}Name"]`).value;
 
         if (name.trim()) {
