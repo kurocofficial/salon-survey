@@ -28,13 +28,70 @@
         </header>
 
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('store')">店舗</button>
+            <button class="tab-button active" onclick="switchTab('info')">使い方・説明</button>
+            <button class="tab-button" onclick="switchTab('store')">店舗</button>
             <button class="tab-button" onclick="switchTab('stylist')">スタイリスト</button>
         </div>
 
         <form id="salonForm">
+            <!-- 使い方・説明タブ -->
+            <div id="info-tab" class="tab-content active">
+                <div class="info-content">
+                    <h2>🏪 ヘアサロン運営データアンケートについて</h2>
+                    
+                    <div class="info-section">
+                        <h3>📝 このアンケートの目的</h3>
+                        <p>ヘアサロンの運営データを収集し、業界全体の現状を把握するためのアンケートです。</p>
+                        <p>収集したデータは統計処理され、匿名化されて業界分析に活用されます。</p>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>🎯 入力項目について</h3>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>📊 店舗データ</h4>
+                                <ul>
+                                    <li><strong>売上</strong> - 年間売上高（万円単位）</li>
+                                    <li><strong>客数</strong> - 年間来店客数</li>
+                                    <li><strong>カルテ客数</strong> - カルテ登録された顧客数</li>
+                                    <li><strong>指名率</strong> - スタイリスト指名率（%）</li>
+                                    <li><strong>再来率</strong> - リピート客の割合（%）</li>
+                                    <li><strong>店販率</strong> - 店頭商品売上比率（%）</li>
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <h4>👨‍🎨 スタイリストデータ</h4>
+                                <ul>
+                                    <li>各スタイリストの年別売上実績</li>
+                                    <li>表形式で効率的に入力可能</li>
+                                    <li>最大10名まで追加可能</li>
+                                    <li>不要な行は削除機能あり</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>📋 入力の流れ</h3>
+                        <div class="steps">
+                            <div class="step">1. 会社名・店舗名を上部に入力</div>
+                            <div class="step">2. 「店舗」タブで店舗全体のデータを入力</div>
+                            <div class="step">3. 「スタイリスト」タブで個人別データを入力</div>
+                            <div class="step">4. 「送信」ボタンで完了</div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>⚠️ ご注意</h3>
+                        <p class="notice">• 数値は概算でも構いません<br>
+                        • 未入力項目は「0」として扱われます<br>
+                        • 送信後は修正できませんので内容をご確認ください</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- 店舗タブ -->
-            <div id="store-tab" class="tab-content active">
+            <div id="store-tab" class="tab-content">
                 <h2>店舗データ</h2>
                 
 
