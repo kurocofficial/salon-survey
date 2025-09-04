@@ -115,6 +115,7 @@ function collectFormData() {
         timestamp: new Date().toISOString(),
         companyName: document.getElementById('company-name').value,
         storeName: document.getElementById('store-name').value,
+        email: document.getElementById('email').value,
         store: {
             hotpepperUrl: document.querySelector('[name="hotpepperUrl"]').value,
             data2023: {
@@ -173,16 +174,50 @@ function collectFormData() {
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-stylist').addEventListener('click', addStylist);
 
+    // フォームバリデーション関数
+    function validateForm() {
+        const companyName = document.getElementById('company-name').value.trim();
+        const storeName = document.getElementById('store-name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        
+        if (!companyName) {
+            alert('会社名を入力してください。');
+            document.getElementById('company-name').focus();
+            return false;
+        }
+        
+        if (!storeName) {
+            alert('店舗名を入力してください。');
+            document.getElementById('store-name').focus();
+            return false;
+        }
+        
+        if (!email) {
+            alert('メールアドレスを入力してください。');
+            document.getElementById('email').focus();
+            return false;
+        }
+        
+        // メールアドレスの形式チェック
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('正しいメールアドレスの形式で入力してください。');
+            document.getElementById('email').focus();
+            return false;
+        }
+        
+        return true;
+    }
+
     document.getElementById('salonForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const formData = collectFormData();
-
-        if (!formData.companyName || !formData.storeName) {
-            alert('会社名と店舗名を入力してください。');
+        // バリデーションチェック
+        if (!validateForm()) {
             return;
         }
 
+        const formData = collectFormData();
         submitForm(formData);
     });
 });

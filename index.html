@@ -16,12 +16,16 @@
             <div class="company-info">
                 <div class="company-row">
                     <div class="input-group">
-                        <label>会社名</label>
-                        <input type="text" id="company-name" name="companyName" placeholder="会社名を入力してください">
+                        <label>会社名 <span class="required">*</span></label>
+                        <input type="text" id="company-name" name="companyName" placeholder="会社名を入力してください" required>
                     </div>
                     <div class="input-group">
-                        <label>店舗名</label>
-                        <input type="text" id="store-name" name="storeName" placeholder="店舗名を入力してください">
+                        <label>店舗名 <span class="required">*</span></label>
+                        <input type="text" id="store-name" name="storeName" placeholder="店舗名を入力してください" required>
+                    </div>
+                    <div class="input-group">
+                        <label>メールアドレス <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="sample@example.com" required>
                     </div>
                 </div>
             </div>
@@ -40,22 +44,26 @@
                     <h2>🏪 ヘアサロン運営データアンケートについて</h2>
                     
                     <div class="info-section">
-                        <h3>📝 このアンケートの目的</h3>
-                        <p>ヘアサロンの運営データを収集し、業界全体の現状を把握するためのアンケートです。</p>
-                        <p>収集したデータは統計処理され、匿名化されて業界分析に活用されます。</p>
+                        <h3>🎨 あなたのサロンの成長をサポートします</h3>
+                        <p class="main-purpose">ご入力いただいたデータを分析し、<strong>あなたのサロンの経営改善ヒントをフィードバック</strong>します。</p>
+                        <p class="main-purpose">業界平均との比較、成長ポイントの発見、今後の戦略立案など、実践的なアドバイスをお届けします。</p>
+                        <p class="sub-purpose">※ 収集したデータは統計処理され、匿名化されて業界分析にも活用されます。</p>
                     </div>
 
                     <div class="info-section">
-                        <h3>🎯 入力項目について</h3>
+                        <h3>🎯 入力項目について（直近12ヶ月のデータを推奨）</h3>
+                        <div class="period-notice">
+                            <p>⚡ <strong>おすすめ：</strong> 最新の状況を正確に把握するため、<strong>直近12ヶ月間</strong>のデータをご入力ください。</p>
+                        </div>
                         <div class="info-grid">
                             <div class="info-card">
                                 <h4>📊 店舗データ</h4>
                                 <ul>
                                     <li><strong>売上</strong> - 年間売上高（万円単位）</li>
                                     <li><strong>客数</strong> - 年間来店客数</li>
-                                    <li><strong>カルテ客数</strong> - カルテ登録された顧客数</li>
+                                    <li><strong>常連客数</strong> - 継続して来店いただいているお客様の数</li>
                                     <li><strong>指名率</strong> - スタイリスト指名率（%）</li>
-                                    <li><strong>再来率</strong> - リピート客の割合（%）</li>
+                                    <li><strong>リピート率</strong> - 繰り返し来店いただいたお客様の割合（%）</li>
                                     <li><strong>店販率</strong> - 店頭商品売上比率（%）</li>
                                 </ul>
                             </div>
@@ -83,9 +91,10 @@
 
                     <div class="info-section">
                         <h3>⚠️ ご注意</h3>
-                        <p class="notice">• 数値は概算でも構いません<br>
-                        • 未入力項目は「0」として扱われます<br>
-                        • 送信後は修正できませんので内容をご確認ください</p>
+                        <p class="notice">• 数値はおおよその数字でも大丈夫です<br>
+                        • 分からない項目は空欄でもOK（、0として扱われます）<br>
+                        • <span class="required">*</span> マークの項目は必須入力です<br>
+                        • 送信後の修正はできませんので、内容をご確認の上送信ください</p>
                     </div>
                 </div>
             </div>
@@ -109,7 +118,7 @@
                                 <input type="number" name="store2023Customers" placeholder="0">
                             </div>
                             <div class="input-group">
-                                <label>カルテ客数 (人)</label>
+                                <label>常連客数 (人)</label>
                                 <input type="number" name="store2023CardCustomers" placeholder="0">
                             </div>
                             <div class="input-group">
@@ -117,7 +126,7 @@
                                 <input type="number" name="store2023Nomination" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
-                                <label>再来率 (%)</label>
+                                <label>リピート率 (%)</label>
                                 <input type="number" name="store2023Revisit" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
@@ -137,7 +146,7 @@
                                 <input type="number" name="store2024Customers" placeholder="0">
                             </div>
                             <div class="input-group">
-                                <label>カルテ客数 (人)</label>
+                                <label>常連客数 (人)</label>
                                 <input type="number" name="store2024CardCustomers" placeholder="0">
                             </div>
                             <div class="input-group">
@@ -145,7 +154,7 @@
                                 <input type="number" name="store2024Nomination" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
-                                <label>再来率 (%)</label>
+                                <label>リピート率 (%)</label>
                                 <input type="number" name="store2024Revisit" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
@@ -165,7 +174,7 @@
                                 <input type="number" name="store2025Customers" placeholder="0">
                             </div>
                             <div class="input-group">
-                                <label>カルテ客数 (人)</label>
+                                <label>常連客数 (人)</label>
                                 <input type="number" name="store2025CardCustomers" placeholder="0">
                             </div>
                             <div class="input-group">
@@ -173,7 +182,7 @@
                                 <input type="number" name="store2025Nomination" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
-                                <label>再来率 (%)</label>
+                                <label>リピート率 (%)</label>
                                 <input type="number" name="store2025Revisit" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">

@@ -31,9 +31,9 @@ header {
 
 .company-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -406,6 +406,41 @@ input[type="url"]:focus {
 
 .remove-stylist:hover {
     background-color: #ff3742;
+}
+
+/* 必須入力マーク */
+.required {
+    color: #ff4757;
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+/* メイン・サブ目的スタイル */
+.main-purpose {
+    font-weight: 500;
+    color: #0C5A4B;
+    margin-bottom: 12px;
+}
+
+.sub-purpose {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.period-notice {
+    background: linear-gradient(135deg, #e8f5f2 0%, #d1f2e8 100%);
+    border-left: 4px solid #0C5A4B;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.period-notice p {
+    margin: 0;
+    color: #0C5A4B;
+    font-weight: 500;
 }
 
 /* 使い方・説明タブのスタイル */
