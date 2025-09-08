@@ -62,10 +62,49 @@ header {
     border-color: #0C5A4B;
 }
 
+/* ヘッダートップレイアウト */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
 h1 {
     color: #0C5A4B;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+/* プライバシーポリシーリンク */
+.privacy-link {
+    flex-shrink: 0;
+}
+
+.privacy-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    background: linear-gradient(135deg, #0C5A4B 0%, #2d7a6b 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(12, 90, 75, 0.2);
+}
+
+.privacy-link a:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(12, 90, 75, 0.3);
+    background: linear-gradient(135deg, #2d7a6b 0%, #0C5A4B 100%);
 }
 
 .tabs {
@@ -593,6 +632,21 @@ input[type="url"]:focus {
 @media (max-width: 768px) {
     .container {
         padding: 15px;
+    }
+    
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .privacy-link a {
+        font-size: 0.8rem;
+        padding: 6px 12px;
     }
     
     .info-grid {
