@@ -127,6 +127,7 @@ function collectFormData() {
         companyName: document.getElementById('company-name').value,
         storeName: document.getElementById('store-name').value,
         email: document.getElementById('email').value,
+        operationStartYear: document.getElementById('operation-start-year').value,
         store: {
             hotpepperUrl: document.querySelector('[name="hotpepperUrl"]').value,
             data2023: {
@@ -187,22 +188,81 @@ function checkBasicInfoComplete() {
     const companyName = document.getElementById('company-name').value.trim();
     const storeName = document.getElementById('store-name').value.trim();
     const email = document.getElementById('email').value.trim();
+    const operationStartYear = document.getElementById('operation-start-year').value;
     
-    return companyName && storeName && email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    return companyName && storeName && email && operationStartYear && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// 運営期間チェック関数
+function getOperationPeriod() {
+    const startYear = parseInt(document.getElementById('operation-start-year').value);
+    if (!startYear) return null;
+    
+    const currentYear = 2025;
+    const operationYears = currentYear - startYear + 1;
+    
+    if (startYear <= 2021) return 'over3years'; // 3年以上
+    else if (startYear === 2022) return 'over3years'; // 3年以上
+    else if (startYear === 2023) return '2to3years'; // 2-3年
+    else return 'under2years'; // 2年未満
+}
+
+// 運営期間情報表示更新
+function updatePeriodInfo() {
+    const periodInfo = document.getElementById('period-info');
+    const period = getOperationPeriod();
+    
+    if (!period) {
+        periodInfo.innerHTML = '<p class="period-notice">⚠️ 運営開始年を選択すると、入力必須項目が表示されます</p>';
+        return;
+    }
+    
+    let message = '';
+    switch(period) {
+        case 'over3years':
+            message = '<p class="period-ok">✅ 対象店舗です！全期間（2023-2025年）のデータ入力をお願いします。</p>';
+            break;
+        case '2to3years':
+            message = '<p class="period-ok">✅ 対象店舗です！2024-2025年のデータ入力が必須です。（2023年は任意）</p>';
+            break;
+        case 'under2years':
+            message = '<p class="period-warning">⚠️ 申し訳ございません。このアンケートは<strong>24ヶ月以上運営している店舗</strong>が対象です。</p>';
+            break;
+    }
+    
+    periodInfo.innerHTML = message;
 }
 
 function checkStoreTabComplete() {
-    const storeFields = [
-        'store2023Sales', 'store2023Customers', 'store2023CardCustomers', 
-        'store2023Nomination', 'store2023Revisit', 'store2023Retail',
-        'store2024Sales', 'store2024Customers', 'store2024CardCustomers', 
-        'store2024Nomination', 'store2024Revisit', 'store2024Retail',
-        'store2025Sales', 'store2025Customers', 'store2025CardCustomers', 
-        'store2025Nomination', 'store2025Revisit', 'store2025Retail',
-        'hotpepperUrl'
-    ];
+    const period = getOperationPeriod();
+    if (!period || period === 'under2years') return false;
     
-    return storeFields.every(field => {
+    let requiredFields = [];
+    
+    // 運営期間に応じて必須フィールドを設定
+    if (period === 'over3years') {
+        // 3年以上: 全期間必須
+        requiredFields = [
+            'store2023Sales', 'store2023Customers', 'store2023CardCustomers', 
+            'store2023Nomination', 'store2023Revisit', 'store2023Retail',
+            'store2024Sales', 'store2024Customers', 'store2024CardCustomers', 
+            'store2024Nomination', 'store2024Revisit', 'store2024Retail',
+            'store2025Sales', 'store2025Customers', 'store2025CardCustomers', 
+            'store2025Nomination', 'store2025Revisit', 'store2025Retail',
+            'hotpepperUrl'
+        ];
+    } else if (period === '2to3years') {
+        // 2-3年: 2024-2025年必須
+        requiredFields = [
+            'store2024Sales', 'store2024Customers', 'store2024CardCustomers', 
+            'store2024Nomination', 'store2024Revisit', 'store2024Retail',
+            'store2025Sales', 'store2025Customers', 'store2025CardCustomers', 
+            'store2025Nomination', 'store2025Revisit', 'store2025Retail',
+            'hotpepperUrl'
+        ];
+    }
+    
+    return requiredFields.every(field => {
         const element = document.querySelector(`[name="${field}"]`);
         return element && element.value.trim() !== '';
     });
@@ -280,10 +340,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初期状態設定
     updateSubmitButtonState();
     
+    // 運営開始年の変更監視
+    document.getElementById('operation-start-year').addEventListener('change', function() {
+        updatePeriodInfo();
+        updateSubmitButtonState();
+    });
+    
     // 入力フィールドの監視設定
-    const allInputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="url"]');
+    const allInputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="url"], select');
     allInputs.forEach(input => {
         input.addEventListener('input', updateSubmitButtonState);
+        input.addEventListener('change', updateSubmitButtonState);
         input.addEventListener('blur', updateSubmitButtonState);
     });
 
@@ -293,13 +360,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const storeComplete = checkStoreTabComplete();
         const stylistComplete = checkStylistTabComplete();
         
+        const period = getOperationPeriod();
+        
         if (!basicComplete) {
-            alert('基本情報（会社名、店舗名、メールアドレス）をすべて入力してください。');
+            alert('基本情報（会社名、店舗名、メールアドレス、運営開始年）をすべて入力してください。');
+            return false;
+        }
+        
+        if (period === 'under2years') {
+            alert('申し訳ございません。このアンケートは24ヶ月以上運営している店舗が対象です。');
             return false;
         }
         
         if (!storeComplete && !stylistComplete) {
-            alert('「店舗タブ」または「スタイリストタブ」のどちらかを完成してください。\n\n■ 店舗タブ: すべての項目を入力\n■ スタイリストタブ: 最低1名のデータを完全入力');
+            let periodMessage = '';
+            if (period === 'over3years') {
+                periodMessage = '■ 店舗タブ: 全期間（2023-2025年）のデータを入力';
+            } else if (period === '2to3years') {
+                periodMessage = '■ 店舗タブ: 2024-2025年のデータを入力（2023年は任意）';
+            }
+            
+            alert(`「店舗タブ」または「スタイリストタブ」のどちらかを完成してください。\n\n${periodMessage}\n■ スタイリストタブ: 最低1名のデータを完全入力`);
             
             if (!storeComplete) {
                 switchTab('store');

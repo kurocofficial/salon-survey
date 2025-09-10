@@ -468,18 +468,60 @@ input[type="url"]:focus {
     margin-top: 15px;
 }
 
+/* 運営期間関連のスタイル */
+.operation-period {
+    margin-top: 20px;
+    max-width: 400px;
+}
+
+.period-info {
+    margin-top: 15px;
+}
+
 .period-notice {
+    background: #f8f9fa;
+    border-left: 4px solid #ffc107;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin: 0;
+    color: #856404;
+    font-size: 0.9rem;
+}
+
+.period-ok {
     background: linear-gradient(135deg, #e8f5f2 0%, #d1f2e8 100%);
     border-left: 4px solid #0C5A4B;
     border-radius: 6px;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-.period-notice p {
+    padding: 12px 15px;
     margin: 0;
     color: #0C5A4B;
     font-weight: 500;
+}
+
+.period-warning {
+    background: linear-gradient(135deg, #ffe8e8 0%, #ffcdd2 100%);
+    border-left: 4px solid #ff4757;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin: 0;
+    color: #c62828;
+    font-weight: 500;
+}
+
+.operation-period select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    transition: border-color 0.3s ease;
+}
+
+.operation-period select:focus {
+    outline: none;
+    border-color: #0C5A4B;
+    box-shadow: 0 0 0 2px rgba(12, 90, 75, 0.2);
 }
 
 /* 進捗表示とヘルプUIのスタイル */
