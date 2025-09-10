@@ -35,22 +35,6 @@
                         <input type="email" id="email" name="email" placeholder="sample@example.com" required>
                     </div>
                 </div>
-                <div class="operation-period">
-                    <div class="input-group">
-                        <label>運営開始年 <span class="required">*</span></label>
-                        <select id="operation-start-year" name="operationStartYear" required>
-                            <option value="">選択してください</option>
-                            <option value="2021">2021年以前</option>
-                            <option value="2022">2022年</option>
-                            <option value="2023">2023年</option>
-                            <option value="2024">2024年</option>
-                            <option value="2025">2025年</option>
-                        </select>
-                    </div>
-                    <div class="period-info" id="period-info">
-                        <p class="period-notice">⚠️ 運営開始年を選択すると、入力必須項目が表示されます</p>
-                    </div>
-                </div>
             </div>
         </header>
 
@@ -106,7 +90,7 @@
                     <div class="info-section">
                         <h3>📋 入力の流れ</h3>
                         <div class="steps">
-                            <div class="step">1. 会社名・店舗名を上部に入力</div>
+                            <div class="step">1. 会社名・店舗名・メールアドレスを上部に入力</div>
                             <div class="step">2. 「店舗」タブで店舗全体のデータを入力</div>
                             <div class="step">3. 「スタイリスト」タブで個人別データを入力</div>
                             <div class="step">4. 「送信」ボタンで完了</div>
@@ -114,13 +98,8 @@
                     </div>
 
                     <div class="info-section">
-                        <h3>⚠️ ご注意・対象条件</h3>
+                        <h3>📝 入力について</h3>
                         <p class="notice">
-                        <strong>📅 対象店舗：24ヶ月以上運営している店舗</strong><br>
-                        • 新規店舗（運営2年未満）は対象外となります<br>
-                        • 運営期間に応じて必要な入力項目が変わります<br><br>
-                        
-                        <strong>📝 入力について：</strong><br>
                         • 数値はおおよその数字でも大丈夫です<br>
                         • 分からない項目は空欄でもOK（0として扱われます）<br>
                         • <span class="required">*</span> マークの項目は必須入力です<br>
@@ -320,7 +299,7 @@
                 <div class="submit-help">
                     <p><strong>送信に必要な条件:</strong></p>
                     <ul>
-                        <li>✓ 基本情報（会社名・店舗名・メール）を入力</li>
+                        <li>✓ 基本情報（会社名・店舗名・メールアドレス）を入力</li>
                         <li>✓ 店舗タブをすべて完成 <strong>または</strong> スタイリスト1名以上を完成</li>
                     </ul>
                 </div>
