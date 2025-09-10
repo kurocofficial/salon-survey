@@ -55,13 +55,14 @@
         </header>
 
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('info')">使い方・説明</button>
+            <button class="tab-button active" onclick="switchTab('info')">概要</button>
+            <button class="tab-button" onclick="switchTab('video')">動画</button>
             <button class="tab-button" onclick="switchTab('store')">店舗</button>
             <button class="tab-button" onclick="switchTab('stylist')">スタイリスト</button>
         </div>
 
         <form id="salonForm">
-            <!-- 使い方・説明タブ -->
+            <!-- 概要タブ -->
             <div id="info-tab" class="tab-content active">
                 <div class="info-content">
                     <h2>🏪 ヘアサロン運営データアンケートについて</h2>
@@ -126,20 +127,24 @@
                         • 送信後の修正はできませんので、内容をご確認の上送信ください</p>
                     </div>
 
-                    <div class="info-section">
-                        <h3>📺 使い方デモ動画</h3>
-                        <div class="video-container">
-                            <div class="youtube-wrapper">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/NUgTUVNMj2A" 
-                                    title="使い方デモ動画" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <p class="video-caption">💡 実際の入力方法や注意点について動画で解説しています</p>
+                </div>
+            </div>
+
+            <!-- 動画タブ -->
+            <div id="video-tab" class="tab-content">
+                <div class="video-content">
+                    <h2>📺 使い方デモ動画</h2>
+                    <div class="video-container">
+                        <div class="youtube-wrapper">
+                            <iframe 
+                                src="https://www.youtube.com/embed/NUgTUVNMj2A" 
+                                title="使い方デモ動画" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
+                        <p class="video-caption">💡 実際の入力方法や注意点について動画で解説しています</p>
                     </div>
                 </div>
             </div>
