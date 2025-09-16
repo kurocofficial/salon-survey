@@ -12,7 +12,14 @@
 <body>
     <div class="container">
         <header>
-            <h1>ヘアサロン運営データアンケート</h1>
+            <div class="header-top">
+                <h1>ヘアサロン運営データアンケート</h1>
+                <div class="privacy-link">
+                    <a href="https://kuroco.team/privacypolicy/" target="_blank" rel="noopener noreferrer">
+                        🔒 プライバシーポリシー
+                    </a>
+                </div>
+            </div>
             <div class="company-info">
                 <div class="company-row">
                     <div class="input-group">
@@ -28,13 +35,83 @@
         </header>
 
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('store')">店舗</button>
+            <button class="tab-button active" onclick="switchTab('explanation')">説明</button>
+            <button class="tab-button" onclick="switchTab('demo')">デモ動画</button>
+            <button class="tab-button" onclick="switchTab('store')">店舗</button>
             <button class="tab-button" onclick="switchTab('stylist')">スタイリスト</button>
         </div>
 
         <form id="salonForm">
+            <!-- 説明タブ -->
+            <div id="explanation-tab" class="tab-content active">
+                <div class="explanation-content">
+                    <h2>🏢 ヘアサロン運営データアンケートについて</h2>
+
+                    <div class="info-section">
+                        <h3>🎯 目的</h3>
+                        <p>このアンケートは、ヘアサロンの運営状況を把握し、より効果的な経営改善のアドバイスを提供するために実施しています。</p>
+                        <p>ご協力いただいたデータは、統計処理され、匿名化されて業界分析にも活用されます。</p>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>📊 入力項目について</h3>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>🏢 店舗データ</h4>
+                                <ul>
+                                    <li><strong>売上</strong> - 年間売上高（万円単位）</li>
+                                    <li><strong>客数</strong> - 年間来店客数</li>
+                                    <li><strong>カルテ枚数</strong> - 管理している顧客カルテ数</li>
+                                    <li><strong>指名率</strong> - スタイリスト指名率（%）</li>
+                                    <li><strong>リピート割合</strong> - 繰り返し来店いただいたお客様の割合（%）</li>
+                                    <li><strong>店販率</strong> - 店頭商品売上比率（%）</li>
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <h4>👨‍🎨 スタイリストデータ</h4>
+                                <ul>
+                                    <li>各スタイリストの年別売上実績</li>
+                                    <li>表形式で効率的に入力可能</li>
+                                    <li>最大1０名まで追加可能</li>
+                                    <li>不要な行は削除機能あり</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>📋 入力の流れ</h3>
+                        <div class="steps">
+                            <div class="step">1. 会社名・店舗名を上部に入力</div>
+                            <div class="step">2. 「店舗」タブで店舗全体のデータを入力</div>
+                            <div class="step">3. 「スタイリスト」タブで個人別データを入力</div>
+                            <div class="step">4. 「送信」ボタンで完了</div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>⚠️ ご注意</h3>
+                        <p class="notice">
+                        • 数値はおおよその数字でも大丈夫です<br>
+                        • 分からない項目は空欄でもOK（０として扱われます）<br>
+                        • 送信後の修正はできませんので、内容をご確認の上送信ください</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- デモ動画タブ -->
+            <div id="demo-tab" class="tab-content">
+                <div class="demo-content">
+                    <h2>📺 使い方デモ動画</h2>
+                    <div class="video-placeholder">
+                        <p>こちらにYouTube動画が表示されます。</p>
+                        <p>動画リンクをお待ちしています。</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- 店舗タブ -->
-            <div id="store-tab" class="tab-content active">
+            <div id="store-tab" class="tab-content">
                 <h2>店舗データ</h2>
                 
 
@@ -52,7 +129,7 @@
                                 <input type="number" name="store2023Customers" placeholder="0">
                             </div>
                             <div class="input-group">
-                                <label>カルテ客数 (人)</label>
+                                <label>カルテ枚数 (枚)</label>
                                 <input type="number" name="store2023CardCustomers" placeholder="0">
                             </div>
                             <div class="input-group">
@@ -60,7 +137,7 @@
                                 <input type="number" name="store2023Nomination" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
-                                <label>再来率 (%)</label>
+                                <label>リピート割合 (%)</label>
                                 <input type="number" name="store2023Revisit" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
@@ -80,7 +157,7 @@
                                 <input type="number" name="store2024Customers" placeholder="0">
                             </div>
                             <div class="input-group">
-                                <label>カルテ客数 (人)</label>
+                                <label>カルテ枚数 (枚)</label>
                                 <input type="number" name="store2024CardCustomers" placeholder="0">
                             </div>
                             <div class="input-group">
@@ -88,7 +165,7 @@
                                 <input type="number" name="store2024Nomination" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
-                                <label>再来率 (%)</label>
+                                <label>リピート割合 (%)</label>
                                 <input type="number" name="store2024Revisit" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
@@ -108,7 +185,7 @@
                                 <input type="number" name="store2025Customers" placeholder="0">
                             </div>
                             <div class="input-group">
-                                <label>カルテ客数 (人)</label>
+                                <label>カルテ枚数 (枚)</label>
                                 <input type="number" name="store2025CardCustomers" placeholder="0">
                             </div>
                             <div class="input-group">
@@ -116,7 +193,7 @@
                                 <input type="number" name="store2025Nomination" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">
-                                <label>再来率 (%)</label>
+                                <label>リピート割合 (%)</label>
                                 <input type="number" name="store2025Revisit" placeholder="0" min="0" max="100">
                             </div>
                             <div class="input-group">

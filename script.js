@@ -170,16 +170,121 @@ function collectFormData() {
     return formData;
 }
 
+// タブ切り替え機能
+function switchTab(tabName) {
+    // 全てのタブボタンからactiveクラスを削除
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+    });
+
+    // 全てのタブコンテンツからactiveクラスを削除
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+
+    // クリックされたタブボタンにactiveクラスを追加
+    event.target.classList.add('active');
+
+    // 対応するタブコンテンツにactiveクラスを追加
+    document.getElementById(tabName + '-tab').classList.add('active');
+}
+
+// 店舗タブの入力完了チェック
+function checkStoreTabComplete() {
+    const storeFields = [
+        'store2023Sales', 'store2023Customers', 'store2023CardCustomers',
+        'store2023Nomination', 'store2023Revisit', 'store2023Retail',
+        'store2024Sales', 'store2024Customers', 'store2024CardCustomers',
+        'store2024Nomination', 'store2024Revisit', 'store2024Retail',
+        'store2025Sales', 'store2025Customers', 'store2025CardCustomers',
+        'store2025Nomination', 'store2025Revisit', 'store2025Retail',
+        'hotpepperUrl'
+    ];
+
+    return storeFields.every(field => {
+        const element = document.querySelector(`[name="${field}"]`);
+        return element && element.value.trim() !== '';
+    });
+}
+
+// スタイリストタブの入力完了チェック
+function checkStylistTabComplete() {
+    const stylistRows = document.querySelectorAll('#stylist-tbody tr[data-stylist]');
+
+    for (let row of stylistRows) {
+        const stylistId = row.dataset.stylist;
+        const name = document.querySelector(`[name="stylist${stylistId}Name"]`).value.trim();
+        const sales2023 = document.querySelector(`[name="stylist${stylistId}_2023Sales"]`).value.trim();
+        const sales2024 = document.querySelector(`[name="stylist${stylistId}_2024Sales"]`).value.trim();
+        const sales2025 = document.querySelector(`[name="stylist${stylistId}_2025Sales"]`).value.trim();
+
+        // 1名でも完全入力されていればOK
+        if (name && sales2023 && sales2024 && sales2025) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// 送信ボタンの状態更新
+function updateSubmitButtonState() {
+    const submitButton = document.getElementById('submit-btn');
+    const companyName = document.getElementById('company-name').value.trim();
+    const storeName = document.getElementById('store-name').value.trim();
+    const storeComplete = checkStoreTabComplete();
+    const stylistComplete = checkStylistTabComplete();
+
+    // 基本情報 + (店舗タブ完了 OR スタイリストタブ完了)
+    const canSubmit = companyName && storeName && (storeComplete || stylistComplete);
+
+    submitButton.disabled = !canSubmit;
+
+    if (canSubmit) {
+        submitButton.style.opacity = '1';
+        submitButton.style.cursor = 'pointer';
+        submitButton.textContent = '送信';
+    } else {
+        submitButton.style.opacity = '0.6';
+        submitButton.style.cursor = 'not-allowed';
+
+        if (!companyName || !storeName) {
+            submitButton.textContent = '会社名・店舗名を入力してください';
+        } else {
+            submitButton.textContent = '店舗データまたはスタイリストデータを完成してください';
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-stylist').addEventListener('click', addStylist);
+
+    // 全ての入力フィールドに変更監視を追加
+    const allInputs = document.querySelectorAll('input');
+    allInputs.forEach(input => {
+        input.addEventListener('input', updateSubmitButtonState);
+        input.addEventListener('blur', updateSubmitButtonState);
+    });
+
+    // 初期状態の送信ボタン設定
+    updateSubmitButtonState();
 
     document.getElementById('salonForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
         const formData = collectFormData();
+        const companyName = document.getElementById('company-name').value.trim();
+        const storeName = document.getElementById('store-name').value.trim();
+        const storeComplete = checkStoreTabComplete();
+        const stylistComplete = checkStylistTabComplete();
 
-        if (!formData.companyName || !formData.storeName) {
+        if (!companyName || !storeName) {
             alert('会社名と店舗名を入力してください。');
+            return;
+        }
+
+        if (!storeComplete && !stylistComplete) {
+            alert('店舗タブまたはスタイリストタブのどちらかを完成してください。');
             return;
         }
 
