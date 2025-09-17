@@ -85,7 +85,7 @@ async function submitForm(formData) {
 
         // no-corsモードでは response.ok が使えないため、成功として扱う
         alert('データを送信しました。ありがとうございます。');
-        window.location.href = 'https://form.k3r.jp/cm_consulting/habu-ADACHI';
+        window.location.href = 'https://form.k3r.jp/cm_consulting/salon-survey';
 
     } catch (error) {
         console.error('Error:', error);
@@ -265,6 +265,18 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('input', updateSubmitButtonState);
         input.addEventListener('blur', updateSubmitButtonState);
     });
+
+    // 動的に追加されるスタイリスト行のイベントリスナーも更新
+    const originalAddStylist = addStylist;
+    window.addStylist = function() {
+        originalAddStylist();
+        // 新しく追加された行の入力フィールドにもイベントリスナーを追加
+        const newInputs = document.querySelectorAll('#stylist-tbody tr:last-child input');
+        newInputs.forEach(input => {
+            input.addEventListener('input', updateSubmitButtonState);
+            input.addEventListener('blur', updateSubmitButtonState);
+        });
+    };
 
     // 初期状態の送信ボタン設定
     updateSubmitButtonState();

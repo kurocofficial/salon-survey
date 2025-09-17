@@ -403,6 +403,66 @@ input[type="url"]:focus {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 店舗テーブルのスタイル */
+.store-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin: 0;
+}
+
+.store-table th {
+    background-color: #0C5A4B;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #0C5A4B;
+}
+
+.store-table .item-header {
+    width: 25%;
+    vertical-align: middle;
+}
+
+.store-table .year-header {
+    background-color: #0C5A4B;
+}
+
+.store-table .sub-header {
+    background-color: #17B397;
+    font-size: 14px;
+}
+
+.store-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.store-table .item-label {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    width: 25%;
+}
+
+.store-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.store-input:focus {
+    outline: none;
+    border-color: #0C5A4B;
+    box-shadow: 0 0 5px rgba(12, 90, 75, 0.3);
+}
+
 .stylist-table {
     width: 100%;
     border-collapse: collapse;
