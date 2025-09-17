@@ -3,7 +3,7 @@
 // ===============================================
 
 // 設定: 以下のスプレッドシートIDを実際のものに置き換えてください
-const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID';
+const SPREADSHEET_ID = '11m1X4LSlx6qEnED21IM_x9bTJN94hS4lXicOa51g5H8';
 
 // すべてのHTTPメソッドに対応
 function doGet(e) {

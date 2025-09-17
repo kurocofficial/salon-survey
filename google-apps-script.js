@@ -6,7 +6,7 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
 
     // スプレッドシートのIDを設定（実際のIDに置き換えてください）
-    const spreadsheetId = '1vX0FBwiz5THuo1fL5eboYmVDe9Us38Xuxv-7ugmiUAA';
+    const spreadsheetId = '11m1X4LSlx6qEnED21IM_x9bTJN94hS4lXicOa51g5H8';
     const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
 
     // 店舗データシートに書き込み
