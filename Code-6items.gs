@@ -80,13 +80,14 @@ function writeStoreData(spreadsheet, data) {
   if (!storeSheet) {
     storeSheet = spreadsheet.insertSheet('店舗データ');
     
-    // ヘッダー行を設定（6項目対応）
+    // ヘッダー行を設定（6項目対応 + メールアドレス）
     const headers = [
       '関連No.',
       'No.',
       '送信日時',
       '会社名',
       '店舗名',
+      'メールアドレス',
       'Hotpepper Beauty URL',
       '2023年売上(万円)',
       '2023年客数(人)',
@@ -130,13 +131,14 @@ function writeStoreData(spreadsheet, data) {
   const timestamp = new Date(data.timestamp);
   const formattedDate = Utilities.formatDate(timestamp, 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss');
   
-  // データ行を準備（6項目対応）
+  // データ行を準備（6項目対応 + メールアドレス）
   const storeData = [
     rowNumber,        // 関連No.（店舗データの場合は自分のNo.）
     rowNumber,        // No.
     formattedDate,
     data.companyName || '',
     data.storeName || '',
+    data.email || '',
     data.store.hotpepperUrl || '',
     // 2023年データ
     data.store.data2023.sales || '',
@@ -181,13 +183,14 @@ function writeStylistData(spreadsheet, data, storeRowNumber) {
   if (!stylistSheet) {
     stylistSheet = spreadsheet.insertSheet('スタイリストデータ');
     
-    // ヘッダー行を設定（関連No.を左側に配置）
+    // ヘッダー行を設定（関連No.を左側に配置 + メールアドレス）
     const headers = [
       '関連No.',
       'No.',
       '送信日時',
       '会社名',
       '店舗名',
+      'メールアドレス',
       'スタイリストID',
       'スタイリスト名',
       '2023年売上(万円)',
@@ -224,6 +227,7 @@ function writeStylistData(spreadsheet, data, storeRowNumber) {
       formattedDate,
       data.companyName || '',
       data.storeName || '',
+      data.email || '',
       stylist.id,
       stylist.name,
       stylist.data2023.sales || '',
