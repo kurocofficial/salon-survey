@@ -115,6 +115,7 @@ function collectFormData() {
         timestamp: new Date().toISOString(),
         companyName: document.getElementById('company-name').value,
         storeName: document.getElementById('store-name').value,
+        email: document.getElementById('email').value,
         store: {
             hotpepperUrl: document.querySelector('[name="hotpepperUrl"]').value,
             data2023: {
@@ -232,11 +233,13 @@ function updateSubmitButtonState() {
     const submitButton = document.getElementById('submit-btn');
     const companyName = document.getElementById('company-name').value.trim();
     const storeName = document.getElementById('store-name').value.trim();
+    const email = document.getElementById('email').value.trim();
     const storeComplete = checkStoreTabComplete();
     const stylistComplete = checkStylistTabComplete();
 
     // 基本情報 + (店舗タブ完了 OR スタイリストタブ完了)
-    const canSubmit = companyName && storeName && (storeComplete || stylistComplete);
+    const basicInfoComplete = companyName && storeName && email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const canSubmit = basicInfoComplete && (storeComplete || stylistComplete);
 
     submitButton.disabled = !canSubmit;
 
@@ -248,8 +251,12 @@ function updateSubmitButtonState() {
         submitButton.style.opacity = '0.6';
         submitButton.style.cursor = 'not-allowed';
 
-        if (!companyName || !storeName) {
-            submitButton.textContent = '会社名・店舗名を入力してください';
+        if (!basicInfoComplete) {
+            if (!companyName || !storeName || !email) {
+                submitButton.textContent = '基本情報を入力してください';
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                submitButton.textContent = '正しいメールアドレスを入力してください';
+            }
         } else {
             submitButton.textContent = '店舗データまたはスタイリストデータを完成してください';
         }
@@ -287,11 +294,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = collectFormData();
         const companyName = document.getElementById('company-name').value.trim();
         const storeName = document.getElementById('store-name').value.trim();
+        const email = document.getElementById('email').value.trim();
         const storeComplete = checkStoreTabComplete();
         const stylistComplete = checkStylistTabComplete();
 
-        if (!companyName || !storeName) {
-            alert('会社名と店舗名を入力してください。');
+        if (!companyName || !storeName || !email) {
+            alert('基本情報（会社名、店舗名、メールアドレス）をすべて入力してください。');
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('正しいメールアドレスを入力してください。');
             return;
         }
 

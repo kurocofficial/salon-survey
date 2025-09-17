@@ -154,9 +154,9 @@ header {
 
 .company-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -169,6 +169,11 @@ header {
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
+}
+
+.required {
+    color: #e74c3c;
+    font-weight: bold;
 }
 
 .company-row .input-group input {
