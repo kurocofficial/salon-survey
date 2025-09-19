@@ -68,7 +68,7 @@ async function submitForm(formData) {
         // ローディング状態を開始
         setLoadingState(submitButton, true);
 
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwu9l2uxwJmPbNTKTwVBI7rq-pjyWyNvhYrB8rre23mDxbiduuIda0v0-qw_nsWkGjdKw/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxWE5uGBgOne6O9SY2O76tF7p6r_XbMv9I4LheN2hxHFPJCjAqUnRCTRZC7iCIEbpJgXg/exec', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
